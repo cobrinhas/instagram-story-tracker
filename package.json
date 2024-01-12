@@ -54,6 +54,7 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
+		"dotenv": "^16.3.1",
 		"instagram-private-api": "^1.45.3",
 		"telegraf": "^4.15.3"
 	}
