@@ -42,15 +42,18 @@
 		"@typescript-eslint/eslint-plugin": "^5.58.0",
 		"@typescript-eslint/parser": "^5.58.0",
 		"eslint": "^8.38.0",
-		"eslint-plugin-unused-imports": "^2.0.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-unused-imports": "^2.0.0",
 		"jest": "^29.5.0",
-		"ts-node": "^10.9.1",
-		"typedoc": "^0.24.6",
 		"prettier": "^2.8.7",
 		"ts-jest": "^29.1.0",
+		"ts-node": "^10.9.1",
 		"tsup": "^6.7.0",
+		"typedoc": "^0.24.6",
 		"typescript": "^5.0.4"
+	},
+	"dependencies": {
+		"instagram-private-api": "^1.45.3"
 	}
 }
