@@ -1,1 +1,0 @@
-AWESOME_SECRET=AwesomeSecret

@@ -1,15 +1,3 @@
-import { Env, fromEnv } from './config';
+import sum from './sum';
 
-export default {
-	async scheduled(
-		controller: ScheduledController,
-		env: Env,
-		ctx: ExecutionContext
-	): Promise<void> {
-		const config = fromEnv(env);
-
-		console.info(`Hello ${config.awesomeSecret}!`);
-
-		return Promise.resolve();
-	}
-};
+console.log(sum(40, 2));
