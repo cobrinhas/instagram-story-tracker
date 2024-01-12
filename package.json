@@ -54,6 +54,7 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
-		"instagram-private-api": "^1.45.3"
+		"instagram-private-api": "^1.45.3",
+		"telegraf": "^4.15.3"
 	}
 }
