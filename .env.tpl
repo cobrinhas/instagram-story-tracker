@@ -1,2 +1,3 @@
 username=
 password=
+bot_token=
