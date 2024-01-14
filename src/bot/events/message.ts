@@ -5,6 +5,7 @@ import {
 	renderUserNotFoundMessage
 } from '../templates';
 import { logError } from '@web-pacotes/lumberdash';
+import { handleStoryActivityTracking } from '../../actions';
 
 export default async function (context: BotContext) {
 	const { message } = context;
@@ -35,6 +36,8 @@ async function handleTrackUserStoryActivityMessage(
 		});
 
 		tracker[chatID] = trackRecord;
+
+		handleStoryActivityTracking(context.telegram, tracker, userRepository);
 	} catch (error) {
 		context.reply(renderUserNotFoundMessage());
 

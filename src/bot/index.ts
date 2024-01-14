@@ -11,7 +11,7 @@ export * from './commands';
 export * from './core';
 export * from './events';
 
-export function initialize(token: string, vault: Vault): Telegraf {
+export function initializeBot(token: string, vault: Vault): Telegraf {
 	const bot = new Telegraf(token);
 
 	bot.command('track', (ctx) => track(botContext(ctx, vault)));
