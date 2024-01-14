@@ -38,7 +38,7 @@ async function handleTrackUserStoryActivityMessage(
 	} catch (error) {
 		context.reply(renderUserNotFoundMessage());
 
-		logError(Error.apply(error));
+		logError(new Error(`${error}`));
 	}
 }
 
