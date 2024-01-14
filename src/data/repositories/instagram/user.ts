@@ -27,11 +27,6 @@ export class FakeInstagramUserRepository implements InstagramUserRepository {
 				publishedDate: new Date()
 			},
 			{
-				url: 'https://download.pexels.com/vimeo/474243696/pexels-artem-podrez-5752729.mp4?width=3840',
-				isVideo: true,
-				publishedDate: new Date()
-			},
-			{
 				url: 'https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg',
 				isVideo: false,
 				publishedDate: new Date()
@@ -41,8 +36,7 @@ export class FakeInstagramUserRepository implements InstagramUserRepository {
 }
 
 export class PrivateApiInstagramUserRepository
-	implements InstagramUserRepository
-{
+	implements InstagramUserRepository {
 	private client: IgApiClient;
 
 	constructor(client: IgApiClient) {
