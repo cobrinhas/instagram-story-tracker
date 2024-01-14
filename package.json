@@ -54,6 +54,7 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
+		"@web-pacotes/lumberdash": "^0.0.1",
 		"@web-pacotes/vault": "^0.0.1",
 		"dotenv": "^16.3.1",
 		"instagram-private-api": "^1.45.3",
