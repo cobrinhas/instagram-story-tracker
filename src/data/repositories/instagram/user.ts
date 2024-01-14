@@ -38,7 +38,8 @@ export class FakeInstagramUserRepository implements InstagramUserRepository {
 }
 
 export class PrivateApiInstagramUserRepository
-	implements InstagramUserRepository {
+	implements InstagramUserRepository
+{
 	private client: IgApiClient;
 
 	constructor(client: IgApiClient) {

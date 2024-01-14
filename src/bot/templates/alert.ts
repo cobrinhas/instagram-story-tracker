@@ -1,13 +1,13 @@
-import { Story } from "../../models";
+import { Story } from '../../models';
 
 export function renderFoundNewStoryActivityMessage(username: string): string {
-    return `
+	return `
 New story activity detected for user \`@${username}\`
     `;
 }
 
 export function renderStoryAlertCaption(story: Story): string {
-    return `
+	return `
 Story was published on: ${story.publishedDate.toLocaleTimeString()}
     `;
 }

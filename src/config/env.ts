@@ -4,7 +4,7 @@ import { Config } from './config';
 export function load(): Config {
 	loadEnv();
 
-	return <Config><unknown>{
+	return <Config>(<unknown>{
 		...process.env
-	};
+	});
 }
