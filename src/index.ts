@@ -1,9 +1,11 @@
-
 import { load } from './config';
 import { initialize } from './bot';
 import { Vault } from '@web-pacotes/vault';
 import { GlobalTracker } from './models';
-import { FakeInstagramAuthenticationRepository, FakeInstagramUserRepository } from './data';
+import {
+	FakeInstagramAuthenticationRepository,
+	FakeInstagramUserRepository
+} from './data';
 
 const config = load();
 const vault = createVault();
@@ -16,11 +18,14 @@ process.once('SIGTERM', () => bot.stop('SIGTERM'));
 bot.launch();
 
 function createVault(): Vault {
-    const vault = new Vault();
+	const vault = new Vault();
 
-    vault.store(<GlobalTracker>{}, 'GlobalTracker');
-    vault.store(new FakeInstagramAuthenticationRepository(), 'InstagramAuthenticationRepository');
-    vault.store(new FakeInstagramUserRepository(), 'InstagramUserRepository');
+	vault.store(<GlobalTracker>{}, 'GlobalTracker');
+	vault.store(
+		new FakeInstagramAuthenticationRepository(),
+		'InstagramAuthenticationRepository'
+	);
+	vault.store(new FakeInstagramUserRepository(), 'InstagramUserRepository');
 
-    return vault;
+	return vault;
 }

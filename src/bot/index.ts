@@ -11,17 +11,14 @@ export * from './commands';
 export * from './core';
 export * from './events';
 
-export function initialize(
-    token: string,
-    vault: Vault,
-): Telegraf {
-    const bot = new Telegraf(token);
+export function initialize(token: string, vault: Vault): Telegraf {
+	const bot = new Telegraf(token);
 
-    bot.command('track', (ctx) => track(botContext(ctx, vault)));
-    bot.command('start', (ctx) => start(botContext(ctx, vault)));
-    bot.command('quit', (ctx) => quit(botContext(ctx, vault)));
+	bot.command('track', (ctx) => track(botContext(ctx, vault)));
+	bot.command('start', (ctx) => start(botContext(ctx, vault)));
+	bot.command('quit', (ctx) => quit(botContext(ctx, vault)));
 
-    bot.on('message', (ctx) => message(botContext(ctx, vault)));
+	bot.on('message', (ctx) => message(botContext(ctx, vault)));
 
-    return bot;
+	return bot;
 }

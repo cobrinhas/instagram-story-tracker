@@ -1,5 +1,5 @@
 export interface Story {
-    url: string;
-    publishedDate: Date;
-    isVideo: boolean;
+	url: string;
+	publishedDate: Date;
+	isVideo: boolean;
 }

@@ -1,8 +1,6 @@
-import { Context } from "telegraf";
-import { renderWelcomeMessage } from "../templates";
+import { Context } from 'telegraf';
+import { renderWelcomeMessage } from '../templates';
 
 export default async function (context: Context) {
-    return context.reply(
-        renderWelcomeMessage()
-    );
+	return context.reply(renderWelcomeMessage());
 }

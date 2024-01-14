@@ -1,5 +1,5 @@
 export function renderGoodbyeMessage(): string {
-    return `
+	return `
 Hi! I'm sad to see you leaving... Comeback anytime!
-    `
+    `;
 }

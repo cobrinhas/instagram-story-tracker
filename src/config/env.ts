@@ -2,9 +2,9 @@ import { config as loadEnv } from 'dotenv';
 import { Config } from './config';
 
 export function load(): Config {
-    loadEnv();
+	loadEnv();
 
-    return <Config>{
-        ...process.env
-    };
+	return <Config>{
+		...process.env
+	};
 }

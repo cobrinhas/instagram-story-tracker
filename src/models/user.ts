@@ -1,4 +1,4 @@
 export interface InstagramUser {
-    username: string;
-    userId: number;
+	username: string;
+	userId: number;
 }
