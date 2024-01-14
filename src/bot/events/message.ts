@@ -4,6 +4,7 @@ import {
 	renderTrackingActivityStartMessage,
 	renderUserNotFoundMessage
 } from '../templates';
+import { logError } from '@web-pacotes/lumberdash';
 
 export default async function (context: BotContext) {
 	const { message } = context;
@@ -37,7 +38,7 @@ async function handleTrackUserStoryActivityMessage(
 	} catch (error) {
 		context.reply(renderUserNotFoundMessage());
 
-		console.error(error);
+		logError(Error.apply(error));
 	}
 }
 

@@ -1,5 +1,6 @@
 import { IgApiClient } from 'instagram-private-api';
 import { InstagramUser, Story } from '../../../models';
+import { logMessage } from '@web-pacotes/lumberdash';
 
 export interface InstagramUserRepository {
 	lookup(username: string): Promise<InstagramUser>;
@@ -8,6 +9,8 @@ export interface InstagramUserRepository {
 
 export class FakeInstagramUserRepository implements InstagramUserRepository {
 	lookup(username: string): Promise<InstagramUser> {
+		logMessage(`hitting fake lookup endpoint for user: ${username}`);
+
 		return Promise.resolve({
 			userId: 0,
 			username: username
@@ -15,6 +18,8 @@ export class FakeInstagramUserRepository implements InstagramUserRepository {
 	}
 
 	stories(id: number): Promise<Story[]> {
+		logMessage(`hitting fake stories endpoint for user: ${id}`);
+
 		return Promise.resolve([
 			{
 				url: 'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4',
@@ -45,6 +50,8 @@ export class PrivateApiInstagramUserRepository
 	}
 
 	async lookup(username: string): Promise<InstagramUser> {
+		logMessage(`looking up user: ${username} on Private API`);
+
 		const info = await this.client.user.usernameinfo(username);
 
 		return <InstagramUser>{
@@ -54,6 +61,8 @@ export class PrivateApiInstagramUserRepository
 	}
 
 	async stories(id: number): Promise<Story[]> {
+		logMessage(`fetching latested stories on Private API for user: ${id}`);
+
 		const stories = await this.client.feed
 			.reelsMedia({ userIds: [id] })
 			.items();
