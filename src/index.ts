@@ -1,54 +1,21 @@
 import { load } from './config';
-import { initialize } from './bot';
-import { Vault } from '@web-pacotes/vault';
-import { GlobalTracker } from './models';
-import {
-	FakeInstagramAuthenticationRepository,
-	FakeInstagramUserRepository,
-	PrivateApiInstagramAuthenticationRepository,
-	PrivateApiInstagramUserRepository
-} from './data';
+import { initializeBot } from './bot';
 import {
 	EmojiLumberdashClient,
 	putLumberdashToWork
 } from '@web-pacotes/lumberdash';
-import { IgApiClient } from 'instagram-private-api';
+import { scheduleActivityTracking, scheduleAuthentication } from './actions';
+import { createVault } from './vault';
 
 putLumberdashToWork([new EmojiLumberdashClient()]);
 
 const config = load();
-const vault = createVault(false);
+const vault = createVault(config.release);
+const bot = initializeBot(config.botToken, vault);
 
-const bot = initialize(config.bot_token, vault);
-
+process.nextTick(() => scheduleAuthentication(config, vault));
+process.nextTick(() => scheduleActivityTracking(bot, config, vault));
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
 bot.launch();
-
-function createVault(debugMode: boolean): Vault {
-	const vault = new Vault();
-	const client = new IgApiClient();
-
-	vault.store(<GlobalTracker>{}, 'GlobalTracker');
-	vault.store(client, 'IgApiClient');
-
-	if (debugMode) {
-		vault.store(
-			new FakeInstagramAuthenticationRepository(),
-			'InstagramAuthenticationRepository'
-		);
-		vault.store(new FakeInstagramUserRepository(), 'InstagramUserRepository');
-	} else {
-		vault.store(
-			new PrivateApiInstagramAuthenticationRepository(client),
-			'InstagramAuthenticationRepository'
-		);
-		vault.store(
-			new PrivateApiInstagramUserRepository(client),
-			'InstagramUserRepository'
-		);
-	}
-
-	return vault;
-}
