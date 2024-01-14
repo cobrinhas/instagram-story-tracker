@@ -6,6 +6,12 @@ import {
 	FakeInstagramAuthenticationRepository,
 	FakeInstagramUserRepository
 } from './data';
+import {
+	EmojiLumberdashClient,
+	putLumberdashToWork
+} from '@web-pacotes/lumberdash';
+
+putLumberdashToWork([new EmojiLumberdashClient()]);
 
 const config = load();
 const vault = createVault();
