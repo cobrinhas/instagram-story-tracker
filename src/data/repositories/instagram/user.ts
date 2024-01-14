@@ -1,12 +1,22 @@
 import { IgApiClient } from "instagram-private-api";
-import { Story, UserID } from "../../../models";
+import { InstagramUser, Story } from "../../../models";
 
 export interface InstagramUserRepository {
-    stories(id: UserID): Promise<Story[]>;
+    lookup(username: string): Promise<InstagramUser>;
+    stories(id: number): Promise<Story[]>;
 }
 
 export class FakeInstagramUserRepository implements InstagramUserRepository {
-    stories(id: UserID): Promise<Story[]> {
+    lookup(username: string): Promise<InstagramUser> {
+        return Promise.resolve(
+            {
+                userId: 0,
+                username: username,
+            }
+        );
+    }
+
+    stories(id: number): Promise<Story[]> {
         return Promise.resolve(
             [
                 {
@@ -38,7 +48,16 @@ export class PrivateApiInstagramUserRepository implements InstagramUserRepositor
         this.client = client;
     }
 
-    async stories(id: UserID): Promise<Story[]> {
+    async lookup(username: string): Promise<InstagramUser> {
+        const info = await this.client.user.usernameinfo(username);
+
+        return <InstagramUser>{
+            userId: info.pk,
+            username: username,
+        };
+    }
+
+    async stories(id: number): Promise<Story[]> {
         const stories = await this.client.feed.reelsMedia({ userIds: [id] }).items();
 
         return stories.map(

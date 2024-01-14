@@ -1,1 +1,4 @@
-export type UserID = number;
+export interface InstagramUser {
+    username: string;
+    userId: number;
+}
