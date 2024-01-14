@@ -6,7 +6,5 @@ export default async function (context: BotContext) {
 	const { chatID } = context;
 	logMessage(`a new user (${chatID}) started interaction with bot`);
 
-	return context.reply(
-		renderWelcomeMessage()
-	);
+	return context.reply(renderWelcomeMessage());
 }
